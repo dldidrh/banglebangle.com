@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>banglebangle</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <style>
+        .button_1, .button_2, .button_3 {
+            cursor: pointer;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .button_1:hover, .button_2:hover, .button_3:hover {
+            opacity: 1;
+        }
+        .text button {
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .text button:hover {
+            background-color: #000000;
+        }
+
+        .pressed {
+            filter: brightness(0.7);
+        }
+
+        .replay {
+            cursor: pointer;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .replay:hover, .replay.blink {
+            opacity: 1;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="big-box">
+
+        <div class="left-box">
+
+            <div class="replay" onclick="replayClicked()">
+                <p>REPLAY</p>
+            </div>
+            <div class="button_1" onclick="buttonClicked(this)">
+                <a href="https://dldidrh.github.io/stageone.com/">
+                    <img src="stage_1.png" alt="button_1" width="755px" >
+                </a>
+            </div>
+
+            <div class="button_2" onclick="buttonClicked(this)">
+                <img src="stage_2.png" alt="button_2" width="755px">
+            </div>
+
+            <div class="button_3" onclick="buttonClicked(this)">
+                <img src="stage_3.png" alt="button_3" width="755px">
+            </div>
+
+            <div class="text">
+                <button onclick="startTypewriter()">사이트에 관한 소개를 확인하세요!</button>
+                <p id = "demo"></p>
+
+                <script>
+
+                    var i = 0;
+                    var txt = '뱅글뱅글은 내 마음대로 되는 것이 하나도 없는 하루를 레트로 게임의 형식으로\n풀어낸 웹사이트입니다. 각 스테이지를 눌러 복잡한 하루를 경험해보세요!';
+                    var speed = 30;
+                    var isTyping = false;
+
+                    function startTypewriter(){
+                        if (!isTyping) {
+                            isTyping = true;
+                            i = 0;
+                            document.getElementById("demo").innerHTML = '';
+                            typeWriter();
+                        }
+                        }
+
+                        function typeWriter() {
+                        if (i < txt.length) {
+                            if (txt.charAt(i) === '\n') {
+                            document.getElementById("demo").innerHTML += '<br>';
+                            } else {
+                            document.getElementById("demo").innerHTML += txt.charAt(i);
+                            }
+                            i++;
+                            setTimeout(typeWriter, speed);
+                        } else {
+                            isTyping = false;
+                        }
+                    }
+                    function buttonClicked(element) {
+                        element.classList.add("pressed");
+                        setTimeout(function () {
+                            element.classList.remove("pressed");
+                        }, 200);
+                    }
+
+                    function buttonClicked(element) {
+                    element.classList.add("pressed");
+                    setTimeout(function () {
+                        element.classList.remove("pressed");
+                    }, 200);
+                }
+
+                var replayText = document.querySelector('.replay');
+
+                function replayClicked() {
+                    console.log('Replay clicked!');
+                }
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    replayText.classList.add('blink');
+                });
+                </scrip>
+            </div>
+
+        </div>
+
+        <div class="center-box">
+            <video controls autoplay style="padding:0%; margin-bottom:90px; margin-right:70px; margin-top: 0%; width:100%  !important; height:auto !important; overflow: hidden;" loop="loop">
+                <source src="bangle.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="right-box">
+        </div>
+
+    </div>
+
+    <div class="bgm">
+        <audio controls autoplay loop="loop">
+        <source src="poketmon.mp3" type="audio/mpeg">
+    </audio>
+    </div>
+
+</body>
